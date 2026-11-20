@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Steam Jaquettes
+Comment=Images des jeux non-Steam (couverture, arrière-plan, logo, icône) depuis SteamGridDB
+Exec=steamjaquettes
+Icon=steamjaquettes
+Categories=Game;Utility;
+StartupWMClass=steamjaquettes
+Terminal=false

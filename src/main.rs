@@ -1058,13 +1058,13 @@ fn main() -> eframe::Result {
     let icon_png = include_bytes!("../resources/icon.png");
     // Raccourci laissé par les versions 1.0.0 et 1.0.1 (alors appelées Jaquettes).
     desktop::remove_legacy("jaquettes");
-    desktop::ensure(&desktop::Entry { app_id: "steamjaquettes", name: "Steam Jaquettes", comment: "Images des jeux non-Steam (SteamGridDB)", categories: "Game;Utility;", icon_png });
+    let app_id = desktop::ensure(&desktop::Entry { app_id: "steamjaquettes", name: "Steam Jaquettes", comment: "Images des jeux non-Steam (SteamGridDB)", categories: "Game;Utility;", icon_png });
     let icon = image::load_from_memory(icon_png).ok().map(|i| {
         let i = i.to_rgba8();
         let (w, h) = i.dimensions();
         egui::IconData { rgba: i.into_raw(), width: w, height: h }
     });
-    let mut viewport = egui::ViewportBuilder::default().with_title("Steam Jaquettes").with_app_id("steamjaquettes").with_inner_size([1240.0, 860.0]).with_min_inner_size([900.0, 600.0]);
+    let mut viewport = egui::ViewportBuilder::default().with_title("Steam Jaquettes").with_app_id(app_id).with_inner_size([1240.0, 860.0]).with_min_inner_size([900.0, 600.0]);
     if let Some(i) = icon { viewport = viewport.with_icon(i); }
     let options = eframe::NativeOptions { viewport, renderer: eframe::Renderer::Glow, vsync: true, ..Default::default() };
     eframe::run_native("Steam Jaquettes", options, Box::new(|cc| Ok(Box::new(App::new(cc)))))
